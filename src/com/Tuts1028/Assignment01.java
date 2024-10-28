@@ -7,13 +7,13 @@ public class Assignment01 {
 
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter the matrix scope: ");
-        int count = 0;
         int matrixScope = sc.nextInt();
+        int count = matrixScope * matrixScope;
 
         for (int i = 0; i < matrixScope; i++) { // rows
             System.out.println(" ");
             for (int j = 0; j < matrixScope; j++) { // columns
-                count++; // value
+                count--; // value
                 if(count < 10){
                     System.out.print("0" + count + " ");
                 }else{
