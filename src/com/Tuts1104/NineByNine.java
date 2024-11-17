@@ -36,13 +36,14 @@ public class NineByNine {
         int startMultiplier = 2;
 
         while (startMultiplier <= 9) {
-            printMultiplicationTable(startMultiplier, inputRow);
+            printMultiplicationTable(startMultiplier, inputRow); // 2 (시작값), 5 (임의로 지정한 행의 수: 2단, 3단, 4단, 5단 6단  // 7~9단.. 9단)
             startMultiplier += inputRow;
         }
     }
 
     public static void printMultiplicationTable(int startMultiplier, int rows) {
         int endMultiplier = Math.min(startMultiplier + rows - 1, 9);
+        // 한번의 출력으로 나오는 최대 단수의 숫자 (f(2, 5) 일떄, 6단까지 출력되어야 하니까)
         for (int i = 1; i <= 9; i++) {
             for (int j = startMultiplier; j <= endMultiplier; j++) {
                 System.out.printf("%d x %d = %d\t", j, i, j * i);

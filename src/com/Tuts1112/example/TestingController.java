@@ -5,7 +5,8 @@ import java.util.Map;
 import java.util.Scanner;
 
 /* 각 클래스를 구분하고, 예외처리 기능을 추가하자.
- *
+ * 리스트로 만들어보자.
+ * 메뉴 취소 기능도 만들어보자.
  * */
 
 enum SeatInfo {
@@ -25,19 +26,35 @@ class ConcertController {
 
     public void start() {
         Scanner scanner = new Scanner(System.in);
-        int choice;
+        String input;
+        int choice = 0;
+        boolean isError = false;
         do {
             System.out.println("\n글로벌 인 콘서트 예약 프로그램");
             System.out.println("예약:1, 조회:2, 취소:3, 종료:4");
-            choice = scanner.nextInt();
+            input = scanner.nextLine();
+
+            // 입력값 예외처리
+            // 정수로만 진행되어야 한다. 즉, 초기입력값인 문자열은 적정범위내 정수로만 치환되어야 한다.
+            if (!(input == null) && !(input.isEmpty())) {
+                try {
+                    choice = Integer.parseInt(input);
+                } catch (NumberFormatException e) {
+                    System.out.println("Wrong Number");
+                }
+            }
+
             switch (choice) {
                 case 1 -> bookingConcert.bookSeat();
                 case 2 -> checkingConcert.checkSeats();
                 case 3 -> cancelConcert.cancelSeat();
-                case 4 -> System.out.println("프로그램을 종료합니다.");
-                default -> System.out.println("잘못된 입력입니다. 다시 시도하세요.");
+                case 4 -> {
+                    System.out.println("프로그램을 종료합니다.");
+                    isError = true;
+                }
+                default -> System.out.println("잘못된 메뉴입니다. 다시 시도하세요.");
             }
-        } while (choice != 4);
+        } while (!isError);
     }
 }
 
